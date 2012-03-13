@@ -49,6 +49,11 @@ Create a new sharing link:
     >>> g = new Geoloqi(access_token="<your_user_access_token>")
     >>> g.post('link/create', {'minutes': 180,})
 
+..
+
+    Note: If you have created a config file with your Geoloqi credentials
+    your access token may be omitted in the examples above.
+
 Documentation
 =============
 Full documentation is available on `Read the Docs`_.
