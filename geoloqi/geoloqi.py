@@ -14,7 +14,7 @@ API_VERSION = 1
 API_URL_BASE_TEMPLATE = 'https://api.geoloqi.com/%d/%s'
 
 
-class Geoloqi(object):
+class Geoloqi:
     """
     A simple interface wrapper for the Geoloqi API.
     """
@@ -124,7 +124,7 @@ class Geoloqi(object):
         return self.run(path, data, headers)
 
 
-class Session(object):
+class Session:
     """
     This class represents a session with the Geoloqi API.
     """
