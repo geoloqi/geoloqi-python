@@ -16,8 +16,8 @@ You can install the library directly from `PyPi`_ with pip.
 
 You can create a config file that holds your client credentials. If you do
 so you won't have to provide them when instantiating a new Geoloqi object.
-The config file can be in the current user's home directory as ```.geoloqi```
-or in the system ```/etc/geoloqi/geoloqi.config```.
+The config file can be in the current user's home directory as ``.geoloqi``
+or in the system ``/etc/geoloqi/geoloqi.config``.
 
 The configuration file should have the following format:
 
