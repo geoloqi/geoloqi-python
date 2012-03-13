@@ -66,8 +66,10 @@ you've written a test and run the full test suite.
 
     $ python geoloqi/tests.py
 
-> Note: You must create a config file containing your Geoloqi credentials
-> before you are able to run tests!
+..
+
+    Note: You must create a config file containing your Geoloqi credentials
+    before you are able to run tests!
 
 License
 =======
