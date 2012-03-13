@@ -37,8 +37,6 @@ Get the active user's profile info:
 
 ::
 
-    $ python
-
     >>> from geoloqi import Geoloqi
     >>> g = new Geoloqi(access_token="<your_user_access_token>")
     >>> g.get('account/profile')
@@ -46,8 +44,6 @@ Get the active user's profile info:
 Create a new sharing link:
 
 ::
-
-    $ python
 
     >>> from geoloqi import Geoloqi
     >>> g = new Geoloqi(access_token="<your_user_access_token>")
@@ -70,6 +66,9 @@ you've written a test and run the full test suite.
 
     $ python geoloqi/tests.py
 
+> Note: You must create a config file containing your Geoloqi credentials
+> before you are able to run tests!
+
 License
 =======
 See the LICENSE file.
@@ -78,4 +77,4 @@ See the LICENSE file.
 .. _PyPi: http://pypi.python.org/pypi/geoloqi-python/
 .. _get support: https://developers.geoloqi.com/support/
 .. _developers site: https://developers.geoloqi.com/
-.. _GitHub: https://github.com/twaddington/geoloqi-python/
+.. _GitHub: https://github.com/geoloqi/geoloqi-python/
