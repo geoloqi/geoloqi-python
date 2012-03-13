@@ -4,7 +4,6 @@ import sys
 import urllib
 import urllib2
 
-from base64 import urlsafe_b64encode
 from ConfigParser import ConfigParser, NoOptionError
 from urllib2 import HTTPError, URLError
 
@@ -87,15 +86,6 @@ class Geoloqi:
         # Create our session
         self.session = Session(self.api_key, self.api_secret, self.access_token)
 
-    def run(self, path, data=None, headers={}):
-        """
-        Make a request to the Geoloqi API server.
-
-        Returns:
-            The JSON response as a dictionary.
-        """
-        return self.session.run(path, data, headers)
-
     def get(self, path, headers={}):
         """
         Make a GET request to the Geoloqi API server.
@@ -122,6 +112,15 @@ class Geoloqi:
             The JSON response as a dictionary.
         """
         return self.run(path, data, headers)
+
+    def run(self, path, data=None, headers={}):
+        """
+        Make a request to the Geoloqi API server.
+
+        Returns:
+            The JSON response as a dictionary.
+        """
+        return self.session.run(path, data, headers)
 
 
 class Session:
@@ -265,6 +264,11 @@ class Session:
         """
         Used to retrieve the access token from the Geoloqi OAuth2 server. This
         is used internally and you shouldn't need to call it manually.
+
+        Args:
+            data: A dictionary of data to be included with the request. You should
+                  include the OAuth2 'grant_type' and other data like your
+                  refresh token.
 
         Returns:
             None
