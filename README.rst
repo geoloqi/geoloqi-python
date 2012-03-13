@@ -49,6 +49,9 @@ Create a new sharing link:
     >>> g = new Geoloqi(access_token="<your_user_access_token>")
     >>> g.post('link/create', {'minutes': 180,})
 
+Documentation
+=============
+Full documentation is available on `Read the Docs`_.
 
 Contributing
 ============
@@ -79,4 +82,5 @@ See the LICENSE file.
 .. _PyPi: http://pypi.python.org/pypi/geoloqi-python/
 .. _get support: https://developers.geoloqi.com/support/
 .. _developers site: https://developers.geoloqi.com/
+.. _Read the Docs: http://readthedocs.org/docs/geoloqi-python/en/latest/
 .. _GitHub: https://github.com/geoloqi/geoloqi-python/
