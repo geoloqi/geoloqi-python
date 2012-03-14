@@ -4,7 +4,7 @@ readme = open('README.rst')
 
 setup(
     name='geoloqi-python',
-    version='1.0.0',
+    version='1.0.1',
     description='A powerful platform for mobile location, messaging and analytics.',
     long_description=readme.read(),
     author='Tristan Waddington',

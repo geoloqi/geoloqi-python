@@ -7,7 +7,7 @@ import urllib2
 from ConfigParser import ConfigParser, NoOptionError
 from urllib2 import HTTPError, URLError
 
-VERSION = '1.0.0'
+VERSION = '1.0.1'
 
 API_VERSION = 1
 API_URL_BASE_TEMPLATE = 'https://api.geoloqi.com/%d/%s'
