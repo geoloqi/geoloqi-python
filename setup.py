@@ -11,7 +11,6 @@ setup(
     author_email='tristan.waddington@gmail.com',
     url='https://github.com/twaddington/geoloqi-python',
     packages=['geoloqi',],
-    package_data={'': ['README.rst']},
     classifiers=[
         'Development Status :: 4 - Beta', # 4 Beta, 5 Production/Stable
         'Environment :: Console',
