@@ -38,7 +38,7 @@ Get the active user's profile info:
 ::
 
     >>> from geoloqi.geoloqi import Geoloqi
-    >>> g = new Geoloqi(access_token="<your_user_access_token>")
+    >>> g = Geoloqi(access_token="<your_user_access_token>")
     >>> g.get('account/profile')
 
 Create a new sharing link:
@@ -46,7 +46,7 @@ Create a new sharing link:
 ::
 
     >>> from geoloqi.geoloqi import Geoloqi
-    >>> g = new Geoloqi(access_token="<your_user_access_token>")
+    >>> g = Geoloqi(access_token="<your_user_access_token>")
     >>> g.post('link/create', {'minutes': 180,})
 
 ..
