@@ -86,18 +86,19 @@ class Geoloqi:
         # Create our session
         self.session = Session(self.api_key, self.api_secret, self.access_token)
 
-    def get(self, path, headers={}):
+    def get(self, path, args={}, headers={}):
         """
         Make a GET request to the Geoloqi API server.
 
         Args:
             path: Path to the resource being requested (example: 'account/profile')
+            args: An optional dictonary of GET arguments.
             headers: An optional dictonary of extra headers to send with the request.
 
         Returns:
             The JSON response as a dictionary.
         """
-        return self.run(path, None, headers)
+        return self.session.get(path, args, headers)
 
     def post(self, path, data={}, headers={}):
         """
@@ -111,7 +112,7 @@ class Geoloqi:
         Returns:
             The JSON response as a dictionary.
         """
-        return self.run(path, data, headers)
+        return self.session.post(path, data, headers)
 
     def run(self, path, data=None, headers={}):
         """
@@ -159,18 +160,19 @@ class Session:
         if not self.access_token:
             self.get_access_token()
 
-    def get(self, path, headers={}):
+    def get(self, path, args={}, headers={}):
         """
         Make a GET request to the Geoloqi API server.
 
         Args:
             path: Path to the resource being requested (example: 'account/profile')
+            args: An optional dictonary of GET arguments.
             headers: An optional dictonary of extra headers to send with the request.
 
         Returns:
             The JSON response as a dictionary.
         """
-        return self.run(path, None, headers)
+        return self.run("%s?%s" % (path, urllib.urlencode(args)), None, headers)
 
     def post(self, path, data={}, headers={}):
         """
