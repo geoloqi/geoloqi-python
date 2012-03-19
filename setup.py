@@ -12,7 +12,7 @@ setup(
     long_description=readme.read(),
     author='Tristan Waddington',
     author_email='tristan.waddington@gmail.com',
-    url='https://github.com/twaddington/geoloqi-python',
+    url='https://github.com/geoloqi/geoloqi-python',
     packages=['geoloqi',],
     classifiers=[
         'Development Status :: 4 - Beta', # 4 Beta, 5 Production/Stable
