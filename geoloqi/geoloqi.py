@@ -5,9 +5,8 @@ import urllib
 import urllib2
 
 from ConfigParser import ConfigParser, NoOptionError
+from version import __version__
 from urllib2 import HTTPError, URLError
-
-VERSION = '1.0.1'
 
 API_VERSION = 1
 API_URL_BASE_TEMPLATE = 'https://api.geoloqi.com/%d/%s'
@@ -118,6 +117,11 @@ class Geoloqi:
         """
         Make a request to the Geoloqi API server.
 
+        Args:
+            path: Path to the resource being requested (example: 'account/profile')
+            data: An optional dictonary to be sent to the server as a POST.
+            headers: An optional dictonary of extra headers to send with the request.
+
         Returns:
             The JSON response as a dictionary.
         """
@@ -186,11 +190,20 @@ class Session:
         Returns:
             The JSON response as a dictionary.
         """
+        headers.update({
+            'Content-Type': 'application/json',
+        })
+
         return self.run(path, data, headers)
 
     def run(self, path, data=None, headers={}):
         """
         Make a request to the Geoloqi API server.
+
+        Args:
+            path: Path to the resource being requested (example: 'account/profile')
+            data: An optional dictonary to be sent to the server as a POST.
+            headers: An optional dictonary of extra headers to send with the request.
 
         Returns:
             The JSON response as a dictionary.
@@ -202,7 +215,7 @@ class Session:
        
         # Update the request headers
         headers.update({
-            'User-Agent': 'geoloqi-python %s' % VERSION,
+            'User-Agent': 'geoloqi-python %s' % __version__,
         })
 
         # Authorize the request
@@ -251,7 +264,7 @@ class Session:
             A file like object returned from `urllib2.urlopen`.
         """
         if data is not None:
-            data = urllib.urlencode(data)
+            data = json.dumps(data)
 
         request = urllib2.Request(API_URL_BASE_TEMPLATE % (API_VERSION, path),
                 data, headers=headers)

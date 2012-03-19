@@ -1,10 +1,13 @@
 from distutils.core import setup
 
+# Get the version number
+execfile('geoloqi/version.py')
+
 readme = open('README.rst')
 
 setup(
     name='geoloqi-python',
-    version='1.0.1',
+    version=__version__,
     description='A powerful platform for mobile location, messaging and analytics.',
     long_description=readme.read(),
     author='Tristan Waddington',
