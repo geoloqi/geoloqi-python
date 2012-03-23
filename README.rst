@@ -6,6 +6,11 @@ Features
 
 - Full test suite!
 
+Requirements
+============
+
+- Mock (for tests)
+
 Getting Started
 ===============
 You can install the library directly from `PyPi`_ with pip.

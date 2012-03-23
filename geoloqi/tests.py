@@ -4,6 +4,7 @@ Tests for the geoloqi module.
 import json
 import unittest
 
+from mock import Mock, patch
 from unittest import TestCase
 from urllib2 import HTTPError
 
@@ -95,13 +96,32 @@ class SessionTest(TestCase):
         r = self.session.execute('layer/list')
         self.assertEqual(r.code, 400)
 
-    def test_establish(self):
-        # TODO: Test this method!
-        pass
+    @patch.object(Session, 'post')
+    def test_establish(self, mock_post):
+        auth = {'access_token': 1337}
+        mock_post.return_value = auth
 
-    def test_renew_access_token(self):
-        # TODO: Test this method!
-        pass
+        self.session.establish({})
+
+        # Assert that establish called post with the expected arguments
+        mock_post.assert_called_with('oauth/token', {
+            'client_id': self.session.api_key,
+            'client_secret': self.session.api_secret,
+        })
+
+        # Ensure establish sets the access token correctly
+        self.assertEqual(auth, self.session.auth)
+        self.assertEqual(auth['access_token'], self.session.access_token)
+
+    @patch.object(Session, 'establish')
+    def test_renew_access_token(self, mock_establish):
+        self.session.renew_access_token()
+
+        # Assert that our mock method was called as expected
+        mock_establish.assert_called_with({
+            'grant_type': 'refresh_token',
+            'refresh_token': self.session.auth.get('refresh_token'),
+        })
 
     def get_access_token(self):
         self.assertEqual(self.session.access_token,
