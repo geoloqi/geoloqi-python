@@ -85,7 +85,7 @@ class Geoloqi:
         # Create our session
         self.session = Session(self.api_key, self.api_secret, self.access_token)
 
-    def get(self, path, args={}, headers={}):
+    def get(self, path, args=None, headers=None):
         """
         Make a GET request to the Geoloqi API server.
 
@@ -99,7 +99,7 @@ class Geoloqi:
         """
         return self.session.get(path, args, headers)
 
-    def post(self, path, data={}, headers={}):
+    def post(self, path, data=None, headers=None):
         """
         Make a POST request to the Geoloqi API server.
 
@@ -113,7 +113,7 @@ class Geoloqi:
         """
         return self.session.post(path, data, headers)
 
-    def run(self, path, data=None, headers={}):
+    def run(self, path, data=None, headers=None):
         """
         Make a request to the Geoloqi API server.
 
@@ -164,7 +164,7 @@ class Session:
         if not self.access_token:
             self.get_access_token()
 
-    def get(self, path, args={}, headers={}):
+    def get(self, path, args=None, headers=None):
         """
         Make a GET request to the Geoloqi API server.
 
@@ -176,12 +176,12 @@ class Session:
         Returns:
             The JSON response as a dictionary.
         """
-        if len(args) > 0:
+        if args:
             path = "%s?%s" % (path, urllib.urlencode(args))
 
         return self.run(path, None, headers)
 
-    def post(self, path, data={}, headers={}):
+    def post(self, path, data=None, headers=None):
         """
         Make a POST request to the Geoloqi API server.
 
@@ -193,13 +193,16 @@ class Session:
         Returns:
             The JSON response as a dictionary.
         """
+        if not headers:
+            headers = {}
+
         headers.update({
             'Content-Type': 'application/json',
         })
 
         return self.run(path, data, headers)
 
-    def run(self, path, data=None, headers={}):
+    def run(self, path, data=None, headers=None):
         """
         Make a request to the Geoloqi API server.
 
@@ -211,6 +214,9 @@ class Session:
         Returns:
             The JSON response as a dictionary.
         """
+        if not headers:
+            headers = {}
+
         # Update the request headers
         headers.update({
             'User-Agent': self.get_user_agent_string(),
@@ -249,7 +255,7 @@ class Session:
 
         return response
 
-    def execute(self, path, data=None, headers={}):
+    def execute(self, path, data=None, headers=None):
         """
         Makes a low-level request to the Geoloqi API server. Does no
         processing of the response.
@@ -262,7 +268,7 @@ class Session:
         Returns:
             A file like object returned from `urllib2.urlopen`.
         """
-        if data is not None:
+        if data:
             data = json.dumps(data)
 
         request = urllib2.Request(API_URL_BASE_TEMPLATE % (API_VERSION, path),
