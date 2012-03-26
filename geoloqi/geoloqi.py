@@ -270,6 +270,8 @@ class Session:
         """
         if data:
             data = json.dumps(data)
+        if not headers:
+            headers = {}
 
         request = urllib2.Request(API_URL_BASE_TEMPLATE % (API_VERSION, path),
                 data, headers=headers)
