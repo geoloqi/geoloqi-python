@@ -176,7 +176,10 @@ class Session:
         Returns:
             The JSON response as a dictionary.
         """
-        return self.run("%s?%s" % (path, urllib.urlencode(args)), None, headers)
+        if len(args) > 0:
+            path = "%s?%s" % (path, urllib.urlencode(args))
+
+        return self.run(path, None, headers)
 
     def post(self, path, data={}, headers={}):
         """
@@ -208,18 +211,14 @@ class Session:
         Returns:
             The JSON response as a dictionary.
         """
-        # Verify we have an access token
-        if not self.access_token:
-            # TODO: Log an exception?
-            pass
-       
         # Update the request headers
         headers.update({
-            'User-Agent': 'geoloqi-python %s' % __version__,
+            'User-Agent': self.get_user_agent_string(),
         })
 
         # Authorize the request
-        headers.update({'Authorization': 'OAuth %s' % self.access_token,})
+        if self.access_token:
+            headers.update({'Authorization': 'OAuth %s' % self.access_token,})
 
         # Execute request
         f = self.execute(path, data, headers)
@@ -328,6 +327,15 @@ class Session:
                 'grant_type': 'client_credentials',
             })
         return self.access_token
+
+    def get_user_agent_string(self):
+        """
+        Retrieve a 'User-Agent' string to be used when making API requests.
+
+        Returns:
+            The 'User-Agent' string.
+        """
+        return 'geoloqi-python %s' % __version__
 
 
 if __name__ == "__main__":
