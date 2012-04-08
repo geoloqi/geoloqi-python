@@ -4,7 +4,7 @@ import sys
 import urllib
 import urllib2
 
-from ConfigParser import ConfigParser, NoOptionError
+from ConfigParser import ConfigParser, NoOptionError, NoSectionError
 from version import __version__
 from urllib2 import HTTPError, URLError
 
@@ -67,15 +67,21 @@ class Geoloqi:
                 self.api_key = self.config.get('Credentials', 'application_access_key')
             except NoOptionError:
                 pass
+            except NoSectionError:
+                pass
         if not self.api_secret:
             try:
                 self.api_secret = self.config.get('Credentials', 'application_secret_key')
             except NoOptionError:
                 pass
+            except NoSectionError:
+                pass
         if not self.access_token:
             try:
                 self.access_token = self.config.get('Credentials', 'user_access_token')
             except NoOptionError:
+                pass
+            except NoSectionError:
                 pass
 
         # Determine if Credentials exist
