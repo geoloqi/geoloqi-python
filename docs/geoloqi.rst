@@ -6,6 +6,5 @@ geoloqi Package
 
 .. automodule:: geoloqi.geoloqi
     :members:
-    :undoc-members:
     :show-inheritance:
 
