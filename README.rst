@@ -38,20 +38,20 @@ and secret. Either can be obtained from the Geoloqi `developers site`_.
 
 Examples
 ========
-Get the active user's profile info:
+Create a geotrigger:
 
 ::
 
     >>> from geoloqi.geoloqi import Geoloqi
-    >>> g = Geoloqi(access_token="<your_user_access_token>")
-    >>> g.get('account/profile')
+    >>> g = Geoloqi(access_token="<your_application_access_token>")
+    >>> g.post('trigger/create', {'place_name': "Powell's Books", "type": "message", "latitude": 45.523334, "longitude": -122.681612, "radius": 150, "text": "Welcome to Powell's Books!"})
 
 Create a new sharing link:
 
 ::
 
     >>> from geoloqi.geoloqi import Geoloqi
-    >>> g = Geoloqi(access_token="<your_user_access_token>")
+    >>> g = Geoloqi(access_token="<your_application_access_token>")
     >>> g.post('link/create', {'minutes': 180,})
 
 ..
